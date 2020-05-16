@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gallup Twin Finder</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<!--<p th:text="'Hello, ' + ${name} + '!'" />-->
+
+<form action="/find" method="get">
+    <label>
+        Podaj swoje imię i nazwisko (dokładnie w takiej samej postaci, jak w arkuszu Google Sheets):
+        <input type="text" name="name"/>
+    </label>
+    <button type="submit">Szukaj</button>
+</form>
+
+<table>
+<!--    <thead>-->
+<!--    <tr>-->
+<!--        <th> Title </th>-->
+<!--        <th> Author </th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+    <tbody>
+    <tr th:if="${results.empty}">
+        <td colspan="2"> No Twins </td>
+    </tr>
+    <tr th:each="result : ${results}">
+        <td><span th:text="${result}"></span></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
