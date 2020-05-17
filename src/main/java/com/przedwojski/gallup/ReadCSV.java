@@ -90,6 +90,8 @@ public class ReadCSV {
     }
 
     public SimilarityResults getFor(String name) {
+        if (name == null || "".equals(name))
+            throw new IllegalArgumentException();
         List<Person> allPeople = new ReadCSV().read();
         Optional<Person> maybeHero =
                 allPeople.stream().filter(p -> p.getName().equals(name)).findFirst();
