@@ -6,10 +6,11 @@ import com.przedwojski.gallup.SimilarityResults;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.io.IOException;
-import java.util.List;
 
 @Controller
 public class MainController {
@@ -20,13 +21,13 @@ public class MainController {
     }
 
     @GetMapping("/redownload")
-    public String redownload() {
+    public RedirectView redownload() {
         try {
             Gallup.downloadSheet();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "index";
+        return new RedirectView("/");
     }
 
     @GetMapping("/find")
@@ -40,5 +41,10 @@ public class MainController {
             model.addAttribute("error", "Nie znaleziono takiej osoby.");
         }
         return "index";
+    }
+
+    @ModelAttribute("lastSyncTime")
+    String lastSyncTime() {
+        return Gallup.getSheetLastSyncTime();
     }
 }

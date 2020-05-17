@@ -3,12 +3,30 @@
 <head>
     <title>Gallup Twin Finder</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <style>
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 1rem;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 
-<a href="/redownload">Zaktualizuj dane z arkusza Google Sheets</a>
-<br/>
-<br/>
+<h2>Wyszukiwarka bliźniaków talentowych dla grupy <a href="https://www.facebook.com/groups/zpasjaomocnychstronach">Z pasją o mocnych stronach</a> </h2>
+
+<p>
+<a href="https://docs.google.com/spreadsheets/d/18B7tI6tvgqYFeO3PeCV_pSjfUiYQrkJjKZOT0Q4K5YM/edit#gid=560605653">
+    Link do arkusza.</a> Jeśli Cię tam nie ma, to nie znajdziesz tu dla siebie nic ciekawego ;)
+</p>
+<hr/>
+
+<p>
+<a href="/redownload">Zaktualizuj dane z arkusza Google Sheets</a> (Ostatnio pobrane: <span th:text="${lastSyncTime}"></span>)<br/>
+</p>
 
 <form action="/find" method="get">
     <label>
@@ -16,6 +34,7 @@
         <input type="text" name="name"/>
     </label>
     <button type="submit">Szukaj</button>
+    <a href="/">Wyczyść</a>
 </form>
 
 <br/>
@@ -56,6 +75,10 @@
     </tr>
     </tbody>
 </table>
+
+<div class="footer">
+    <small>&copy; Copyright 2020 <a href="https://przedwojski.com">Szymon Przedwojski</a> // <a href="mailto:szymon.przedwojski@gmail.com">Zgłoś błąd lub zaproponuj poprawkę</a> // <a href="https://github.com/sprzedwojski/gallup-twins">Kod źródłowy na Githubie</a> </small>
+</div>
 
 </body>
 </html>

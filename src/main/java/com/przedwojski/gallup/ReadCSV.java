@@ -72,10 +72,6 @@ public class ReadCSV {
                 Person person = new Person(name, description, topFive);
                 people.add(person);
             }
-
-            for (Person person : people) {
-                System.out.println(person);
-            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -83,10 +79,8 @@ public class ReadCSV {
     }
 
     private List<String> getRecordFromLine(String line) {
-//        line = line.replaceAll("\".*\"", ""); // remove problematic descriptions between " ", which often contain commas
         List<String> values = new ArrayList<>();
         try (Scanner rowScanner = new Scanner(line)) {
-//            rowScanner.useDelimiter(",");
             rowScanner.useDelimiter("\t");
             while (rowScanner.hasNext()) {
                 values.add(rowScanner.next());
@@ -105,15 +99,4 @@ public class ReadCSV {
         Similarity similarity = new Similarity(hero, allPeople);
         return similarity.findSameTopFive();
     }
-
-//    public static void main(String[] args) {
-//        List<Person> allPeople = new ReadCSV().read();
-//        System.out.println("\n\n");
-//        Optional<Person> me =
-//                allPeople.stream().filter(p -> p.getName().equals("Piotr Dąbrowicz")).findFirst();
-//        me.ifPresent(person -> {
-//            Similarity similarity = new Similarity(person, allPeople);
-//            similarity.findSameTopFive();
-//        });
-//    }
 }
