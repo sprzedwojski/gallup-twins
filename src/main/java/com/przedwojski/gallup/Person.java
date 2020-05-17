@@ -11,12 +11,16 @@ class Person {
         this.topFive = topFive;
     }
 
-    TopFive getTopFive() {
+    public TopFive getTopFive() {
         return this.topFive;
     }
 
     public String getName() {
         return name;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     @Override

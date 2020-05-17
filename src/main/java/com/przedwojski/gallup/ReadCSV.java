@@ -95,10 +95,12 @@ public class ReadCSV {
         return values;
     }
 
-    public List<String> getFor(String name) {
+    public SimilarityResults getFor(String name) {
         List<Person> allPeople = new ReadCSV().read();
         Optional<Person> maybeHero =
                 allPeople.stream().filter(p -> p.getName().equals(name)).findFirst();
+        if (maybeHero.isEmpty())
+            throw new IllegalArgumentException();
         Person hero = maybeHero.get();
         Similarity similarity = new Similarity(hero, allPeople);
         return similarity.findSameTopFive();

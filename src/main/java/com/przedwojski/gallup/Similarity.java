@@ -15,8 +15,7 @@ class Similarity {
         this.allPeople = allPeople;
     }
 
-    List<String> findSameTopFive() {
-        List<String> allFound = new ArrayList<>();
+    SimilarityResults findSameTopFive() {
         Set<Talent> heroTopFive = this.person.getTopFive().asSet();
         List<Talent> heroTopFiveList = Arrays.asList(this.person.getTopFive().get());
 
@@ -24,23 +23,24 @@ class Similarity {
                                                  .filter(p -> !p.getName().equals(person.getName())) // exclude the hero
                                                  .collect(Collectors.toList());
 
+        List<Person> twins = new ArrayList<>();
+        List<Person> almostTwins = new ArrayList<>();
+
         for (Person person : peopleWithoutHero) {
             Set<Talent> personTopFive = person.getTopFive().asSet();
             if (personTopFive.equals(heroTopFive)) {
-//                System.out.println("Found a twin: " + person);
-                allFound.add("Found a twin: " + person);
+                twins.add(person);
             } else {
                 for (Talent heroTalent : heroTopFiveList) {
                     Set<Talent> heroFourFromTopFive = heroTopFiveList.stream().filter(t -> t != heroTalent).collect(Collectors.toSet());
                     if (personTopFive.containsAll(heroFourFromTopFive)) {
-//                        System.out.println("Found an almost-twin (4/5): " + person);
-                        allFound.add("Found an almost-twin (4/5): " + person);
+                        almostTwins.add(person);
                     }
                 }
             }
 
         }
 
-        return allFound;
+        return new SimilarityResults(this.person, twins, almostTwins);
     }
 }

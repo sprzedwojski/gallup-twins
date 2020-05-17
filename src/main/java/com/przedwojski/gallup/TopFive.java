@@ -19,8 +19,14 @@ class TopFive {
         return new HashSet<Talent>(Arrays.asList(talents));
     }
 
+//    @Override
+//    public String toString() {
+//        return "TopFive{" + "talents=" + Arrays.toString(talents) + '}';
+//    }
+
+
     @Override
     public String toString() {
-        return "TopFive{" + "talents=" + Arrays.toString(talents) + '}';
+        return Arrays.toString(talents);
     }
 }

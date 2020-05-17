@@ -5,7 +5,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<!--<p th:text="'Hello, ' + ${name} + '!'" />-->
+
+<a href="/redownload">Zaktualizuj dane z arkusza Google Sheets</a>
+<br/>
+<br/>
 
 <form action="/find" method="get">
     <label>
@@ -15,19 +18,41 @@
     <button type="submit">Szukaj</button>
 </form>
 
-<table>
-<!--    <thead>-->
-<!--    <tr>-->
-<!--        <th> Title </th>-->
-<!--        <th> Author </th>-->
-<!--    </tr>-->
-<!--    </thead>-->
-    <tbody>
-    <tr th:if="${results.empty}">
-        <td colspan="2"> No Twins </td>
+<br/>
+
+<p th:if="${error}">
+    <strong style="color: red;" th:text="${error}"></strong>
+</p>
+
+<p th:if="${error == null && results != null && results.getHero() != null}">
+    Wyniki dla <strong><span th:text="${results.getHero().getName()}"></span> <span th:text="${results.getHero().getTopFive()}"></span></strong>
+</p>
+
+<table th:if="${results != null}">
+    <thead>
+    <tr>
+        <th> Imię i nazwisko </th>
+        <th> Branża </th>
+        <th> Top5 Talentów </th>
+        <th> Liczba wspólnych Talentów w Top5 </th>
     </tr>
-    <tr th:each="result : ${results}">
-        <td><span th:text="${result}"></span></td>
+    </thead>
+    <tbody>
+    <tr th:if="${results == null}">
+        <td colspan="2"> Brak wyników </td>
+    </tr>
+    <tr th:each="twin : ${results.getTwins()}" style="color: green;">
+        <td><span th:text="${twin.getName()}"></span></td>
+        <td><span th:text="${twin.getDescription()}"></span></td>
+        <td><span th:text="${twin.getTopFive()}"></span></td>
+        <td><span>5</span></td>
+    </tr>
+    <tr></tr>
+    <tr th:each="almostTwin : ${results.getAlmostTwins()}">
+        <td><span th:text="${almostTwin.getName()}"></span></td>
+        <td><span th:text="${almostTwin.getDescription()}"></span></td>
+        <td><span th:text="${almostTwin.getTopFive()}"></span></td>
+        <td><span>4</span></td>
     </tr>
     </tbody>
 </table>
