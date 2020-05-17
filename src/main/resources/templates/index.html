@@ -22,10 +22,16 @@
 <a href="https://docs.google.com/spreadsheets/d/18B7tI6tvgqYFeO3PeCV_pSjfUiYQrkJjKZOT0Q4K5YM/edit#gid=560605653">
     Link do arkusza.</a> Jeśli Cię tam nie ma, to nie znajdziesz tu dla siebie nic ciekawego ;)
 </p>
+<p>
+    Aplikacja wyszukuje osoby posiadające co najmniej 4 takie same talenty w Top5 jak podana osoba.<br/><br/>
+    Na ten moment osoby, które mają takie same imię i nazwisko jak ktoś inny w arkuszu, nie są obsługiwane (jest kilka takich przypadków).
+    <br/>Brana pod uwagę jest pierwsza osoba o danym imieniu i nazwisku.
+    <br/>Jeśli Ciebie dotyczy ten problem, to zmień swoje imię i nazwisko w arkuszu, a potem zaktualizuj dane poniżej.
+</p>
 <hr/>
 
 <p>
-<a href="/redownload">Zaktualizuj dane z arkusza Google Sheets</a> (Ostatnio pobrane: <span th:text="${lastSyncTime}"></span>)<br/>
+<a href="/redownload">Zaktualizuj dane z arkusza Google Sheets</a> (Ostatnio pobrane: <span th:text="${lastSyncTime}"></span> czasu polskiego)<br/>
 </p>
 
 <form action="/find" method="get">
@@ -44,7 +50,10 @@
 </p>
 
 <p th:if="${error == null && results != null && results.getHero() != null}">
-    Wyniki dla <strong><span th:text="${results.getHero().getName()}"></span> <span th:text="${results.getHero().getTopFive()}"></span></strong>
+    Wyniki dla: <strong>
+    <span th:text="${results.getHero().getName()}"></span> // <span th:text="${results.getHero().getDescription()}"></span> //
+    <span th:text="${results.getHero().getTopFive()}"></span>
+    </strong>
 </p>
 
 <table th:if="${results != null}">

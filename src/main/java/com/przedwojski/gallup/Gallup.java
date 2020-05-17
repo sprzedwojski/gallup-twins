@@ -19,11 +19,8 @@ public class Gallup {
     private static final String FIRST_PERSON_NAME_IN_TSV = "Dominik Juszczyk";
     private static final String USER_DIR = System.getProperty("user.dir");
 
-    public static void main(String[] args) throws IOException {
-        downloadSheet();
-    }
-
     public static void downloadSheet() throws IOException {
+        System.out.println("Syncing the Google Sheet...");
         InputStream in = new URL(url).openStream();
         Path filePath = Paths.get(USER_DIR, "gallup.tsv");
         Path filePathFixed = Paths.get(USER_DIR, "gallup_fixed.tsv");
@@ -40,7 +37,7 @@ public class Gallup {
             DateTimeFormatter formatter =
                     DateTimeFormatter.ofLocalizedDateTime( FormatStyle.SHORT )
                             .withLocale( Locale.UK )
-                            .withZone( ZoneId.systemDefault() );
+                            .withZone( ZoneId.of("Europe/Warsaw") );
             return formatter.format(creationTime.toInstant());
         } catch (IOException ex) {
             // handle exception

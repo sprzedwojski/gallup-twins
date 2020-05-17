@@ -3,6 +3,7 @@ package com.przedwojski.gallup;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 class TopFive {
     private Talent[] talents = new Talent[5];
@@ -19,14 +20,8 @@ class TopFive {
         return new HashSet<Talent>(Arrays.asList(talents));
     }
 
-//    @Override
-//    public String toString() {
-//        return "TopFive{" + "talents=" + Arrays.toString(talents) + '}';
-//    }
-
-
     @Override
     public String toString() {
-        return Arrays.toString(talents);
+        return Arrays.stream(talents).map(Enum::name).collect(Collectors.joining(", "));
     }
 }
