@@ -4,9 +4,11 @@
     <title>Gallup Twin Finder</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+
     <style>
         .footer {
-            position: fixed;
+            margin-top: 2rem;
             left: 0;
             bottom: 1rem;
             width: 100%;
@@ -16,32 +18,49 @@
 </head>
 <body>
 
-<h2>Wyszukiwarka bliźniaków talentowych dla grupy <a href="https://www.facebook.com/groups/zpasjaomocnychstronach">Z pasją o mocnych stronach</a> </h2>
+<div class="container px-4 py-4">
+<div class="text-3xl">
+    Wyszukiwarka bliźniaków talentowych dla grupy
+    <a class="hover:underline text-blue-500" href="https://www.facebook.com/groups/zpasjaomocnychstronach">"Z pasją o mocnych stronach"</a>
+</div>
 
-<p>
-<a href="https://docs.google.com/spreadsheets/d/18B7tI6tvgqYFeO3PeCV_pSjfUiYQrkJjKZOT0Q4K5YM/edit#gid=560605653">
-    Link do arkusza.</a> Jeśli Cię tam nie ma, to nie znajdziesz tu dla siebie nic ciekawego ;)
-</p>
-<p>
+    <div class="max-w-sm w-full lg:max-w-full">
+        <div class="border border-gray-400 lg:border-gray-400 bg-white rounded-b lg:rounded p-4 justify-between leading-normal">
+        <a class="hover:underline text-blue-500" href="https://docs.google.com/spreadsheets/d/18B7tI6tvgqYFeO3PeCV_pSjfUiYQrkJjKZOT0Q4K5YM/edit#gid=560605653">
+    Link do arkusza.</a> Jeśli Cię tam nie ma, to nie znajdziesz tu dla siebie nic ciekawego ;)<br/>
     Aplikacja wyszukuje osoby posiadające co najmniej 4 takie same talenty w Top5 jak podana osoba.<br/><br/>
     Na ten moment osoby, które mają takie same imię i nazwisko jak ktoś inny w arkuszu, nie są obsługiwane (jest kilka takich przypadków).
     <br/>Brana pod uwagę jest pierwsza osoba o danym imieniu i nazwisku.
     <br/>Jeśli Ciebie dotyczy ten problem, to zmień swoje imię i nazwisko w arkuszu, a potem zaktualizuj dane poniżej.
-</p>
-<hr/>
+    </div>
+    </div>
 
-<p>
-<a href="/redownload">Zaktualizuj dane z arkusza Google Sheets</a> (Ostatnio pobrane: <span th:text="${lastSyncTime}"></span> czasu polskiego)<br/>
-</p>
+    <div class="max-w-sm w-full lg:max-w-full">
+        <div class="border border-gray-400 lg:border-gray-400 bg-white rounded-b lg:rounded p-4 justify-between leading-normal">
+<a class="hover:underline text-blue-500" href="/redownload">Zaktualizuj dane z arkusza Google Sheets</a> (Ostatnio pobrane: <span th:text="${lastSyncTime}"></span> czasu polskiego)<br/>
+        </div>
+    </div>
 
-<form action="/find" method="get">
-    <label>
-        Podaj swoje imię i nazwisko (dokładnie w takiej samej postaci, jak w arkuszu Google Sheets):
-        <input type="text" name="name"/>
-    </label>
-    <button type="submit">Szukaj</button>
-    <a href="/">Wyczyść</a>
+<div class="w-full max-w-xl mx-auto mt-8">
+<form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" action="/find" method="get">
+    <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="name">
+            Imię i nazwisko (dokładnie w takiej postaci, jak w arkuszu)
+        </label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700
+                      leading-tight focus:outline-none focus:shadow-outline"
+               th:value="${results} ? ${results.getHero().getName()} : ''"
+               type="text" name="name" id="name" placeholder="Imię i nazwisko"/>
+    </div>
+    <div class="flex items-center justify-between">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded
+                       focus:outline-none focus:shadow-outline"
+                type="submit">Szukaj</button>
+        <a class="inline-block alignt-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
+                href="/">Wyczyść</a>
+    </div>
 </form>
+</div>
 
 <br/>
 
@@ -56,13 +75,13 @@
     </strong>
 </p>
 
-<table th:if="${results != null}">
+<table class="table-fixed" th:if="${results != null}">
     <thead>
     <tr>
-        <th> Imię i nazwisko </th>
-        <th> Branża </th>
-        <th> Top5 Talentów </th>
-        <th> Liczba wspólnych Talentów w Top5 </th>
+        <th class="w-1/5 px-4 py-2"> Imię i nazwisko </th>
+        <th class="w-1/5 px-4 py-2"> Branża </th>
+        <th class="w-2/5 px-4 py-2"> Top5 Talentów </th>
+        <th class="px-4 py-2"> Liczba wspólnych Talentów w Top5 </th>
     </tr>
     </thead>
     <tbody>
@@ -70,20 +89,22 @@
         <td colspan="2"> Brak wyników </td>
     </tr>
     <tr th:each="twin : ${results.getTwins()}" style="color: green;">
-        <td><span th:text="${twin.getName()}"></span></td>
-        <td><span th:text="${twin.getDescription()}"></span></td>
-        <td><span th:text="${twin.getTopFive()}"></span></td>
-        <td><span>5</span></td>
+        <td class="border px-4 py-2"><span th:text="${twin.getName()}"></span></td>
+        <td class="border px-4 py-2"><span th:text="${twin.getDescription()}"></span></td>
+        <td class="border px-4 py-2"><span th:text="${twin.getTopFive()}"></span></td>
+        <td class="border px-4 py-2"><span>5</span></td>
     </tr>
     <tr></tr>
     <tr th:each="almostTwin : ${results.getAlmostTwins()}">
-        <td><span th:text="${almostTwin.getName()}"></span></td>
-        <td><span th:text="${almostTwin.getDescription()}"></span></td>
-        <td><span th:text="${almostTwin.getTopFive()}"></span></td>
-        <td><span>4</span></td>
+        <td class="border px-4 py-2"><span th:text="${almostTwin.getName()}"></span></td>
+        <td class="border px-4 py-2"><span th:text="${almostTwin.getDescription()}"></span></td>
+        <td class="border px-4 py-2"><span th:text="${almostTwin.getTopFive()}"></span></td>
+        <td class="border px-4 py-2"><span>4</span></td>
     </tr>
     </tbody>
 </table>
+
+</div>
 
 <div class="footer">
     <small>&copy; Copyright 2020 <a href="https://przedwojski.com">Szymon Przedwojski</a> // <a href="mailto:szymon.przedwojski@gmail.com">Zgłoś błąd lub zaproponuj poprawkę</a> // <a href="https://github.com/sprzedwojski/gallup-twins">Kod źródłowy na Githubie</a> </small>
