@@ -34,6 +34,7 @@ enum Talent {
     INPUT,
     INTELLECTION,
     LEARNER,
-    STRATEGIC
+    STRATEGIC,
+    UNDEFINED
 
 }

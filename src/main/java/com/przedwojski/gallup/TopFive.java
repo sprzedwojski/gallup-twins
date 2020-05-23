@@ -5,8 +5,16 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static com.przedwojski.gallup.Talent.UNDEFINED;
+
 class TopFive {
-    private Talent[] talents = new Talent[5];
+    private Talent[] talents = new Talent[] {
+            UNDEFINED,
+            UNDEFINED,
+            UNDEFINED,
+            UNDEFINED,
+            UNDEFINED,
+    };
 
     void setTalent(Talent talent, int position) {
         talents[position - 1] = talent;
@@ -17,7 +25,7 @@ class TopFive {
     }
 
     Set<Talent> asSet() {
-        return new HashSet<Talent>(Arrays.asList(talents));
+        return new HashSet<>(Arrays.asList(talents));
     }
 
     @Override
