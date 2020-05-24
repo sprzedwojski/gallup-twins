@@ -99,6 +99,6 @@ public class ReadCSV {
             throw new IllegalArgumentException();
         Person hero = maybeHero.get();
         Similarity similarity = new Similarity(hero, allPeople);
-        return similarity.findSameTopFive();
+        return similarity.findSimilarPeople();
     }
 }
