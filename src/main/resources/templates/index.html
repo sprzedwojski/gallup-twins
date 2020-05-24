@@ -16,15 +16,15 @@
         }
     </style>
 </head>
-<body>
+<body class="text-3xl lg:text-lg">
 
-<div class="container px-4 py-4">
+<div class="mx-auto px-4 py-4">
 <div class="text-3xl">
     Wyszukiwarka bliźniaków talentowych dla grupy
     <a class="hover:underline text-blue-500" href="https://www.facebook.com/groups/zpasjaomocnychstronach">"Z pasją o mocnych stronach"</a>
 </div>
 
-    <div class="max-w-sm w-full lg:max-w-full">
+    <div class="max-w-full">
         <div class="border border-gray-400 lg:border-gray-400 bg-white rounded-b lg:rounded p-4 justify-between leading-normal">
         <a class="hover:underline text-blue-500" href="https://docs.google.com/spreadsheets/d/18B7tI6tvgqYFeO3PeCV_pSjfUiYQrkJjKZOT0Q4K5YM/edit#gid=560605653">
     Link do arkusza.</a> Jeśli Cię tam nie ma, to nie znajdziesz tu dla siebie nic ciekawego ;)<br/>
@@ -35,7 +35,7 @@
     </div>
     </div>
 
-    <div class="max-w-sm w-full lg:max-w-full">
+    <div class="max-w-full">
         <div class="border border-gray-400 lg:border-gray-400 bg-white rounded-b lg:rounded p-4 justify-between leading-normal">
 <a class="hover:underline text-blue-500" href="/redownload">Zaktualizuj dane z arkusza Google Sheets</a> (Ostatnio pobrane: <span th:text="${lastSyncTime}"></span> czasu polskiego)<br/>
         </div>
@@ -75,13 +75,13 @@
     </strong>
 </p>
 
-<table class="table-fixed" th:if="${results != null}">
+<table class="table-fixed max-w-full" th:if="${results != null}">
     <thead>
     <tr>
-        <th class="w-1/5 px-4 py-2"> Imię i nazwisko </th>
-        <th class="w-1/5 px-4 py-2"> Branża </th>
-        <th class="w-2/5 px-4 py-2"> Top5 Talentów </th>
-        <th class="px-4 py-2"> Liczba wspólnych Talentów w Top5 </th>
+        <th class="w-1/6 px-4 py-2"> Imię i nazwisko </th>
+        <th class="w-1/6 px-4 py-2"> Branża </th>
+        <th class="w-3/6 px-4 py-2"> Top5 Talentów </th>
+        <th class="w-1/6 px-4 py-2"> Liczba wspólnych Talentów w Top5 </th>
     </tr>
     </thead>
     <tbody>
