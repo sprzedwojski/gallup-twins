@@ -19,12 +19,20 @@
 <body class="text-3xl lg:text-lg">
 
 <div class="mx-auto px-4 py-4">
-<div class="text-3xl">
-    Wyszukiwarka bliźniaków talentowych dla grupy
-    <a class="hover:underline text-blue-500" href="https://www.facebook.com/groups/zpasjaomocnychstronach">"Z pasją o mocnych stronach"</a>
-</div>
+    <div class="flex flex-row justify-between space-x-2">
+    <div class="text-3xl">
+        Wyszukiwarka bliźniaków talentowych dla grupy
+        <a class="hover:underline text-blue-500" href="https://www.facebook.com/groups/zpasjaomocnychstronach">"Z pasją o mocnych stronach"</a>
+    </div>
+        <button class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded
+               focus:outline-none focus:shadow-outline text-sm lg:text-md"
+                onclick="
+    document.getElementById('more-info').classList.remove('hidden');
+    document.getElementById('more-info').classList.add('lg:flex', 'lg:flex-row');
+">Więcej informacji</button>
+    </div>
 
-    <div class="max-w-full">
+<div id="more-info" class="hidden">
         <div class="border border-gray-400 lg:border-gray-400 bg-white rounded-b lg:rounded p-4 justify-between leading-normal">
         <a class="hover:underline text-blue-500" href="https://docs.google.com/spreadsheets/d/18B7tI6tvgqYFeO3PeCV_pSjfUiYQrkJjKZOT0Q4K5YM/edit#gid=560605653">
     Link do arkusza.</a> Jeśli Cię tam nie ma, to nie znajdziesz tu dla siebie nic ciekawego ;)<br/>
@@ -33,15 +41,13 @@
     <br/>Brana pod uwagę jest pierwsza osoba o danym imieniu i nazwisku.
     <br/>Jeśli Ciebie dotyczy ten problem, to zmień swoje imię i nazwisko w arkuszu, a potem zaktualizuj dane poniżej.
     </div>
-    </div>
 
-    <div class="max-w-full">
         <div class="border border-gray-400 lg:border-gray-400 bg-white rounded-b lg:rounded p-4 justify-between leading-normal">
 <a class="hover:underline text-blue-500" href="/redownload">Zaktualizuj dane z arkusza Google Sheets</a> (Ostatnio pobrane: <span th:text="${lastSyncTime}"></span> czasu polskiego)<br/>
         </div>
-    </div>
+</div>
 
-<div class="w-full max-w-xl mx-auto mt-8">
+<div class="w-full lg:max-w-xl mx-auto mt-8">
 <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" action="/find" method="get">
     <div class="mb-4">
         <label class="block text-gray-700 font-bold mb-2" for="name">
@@ -56,7 +62,7 @@
         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded
                        focus:outline-none focus:shadow-outline"
                 type="submit">Szukaj</button>
-        <a class="inline-block alignt-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
+        <a class="inline-block align-baseline font-bold lg:text-sm text-blue-500 hover:text-blue-800"
                 href="/">Wyczyść</a>
     </div>
 </form>
