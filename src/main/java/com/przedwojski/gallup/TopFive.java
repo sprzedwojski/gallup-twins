@@ -30,6 +30,9 @@ class TopFive {
 
     @Override
     public String toString() {
-        return Arrays.stream(talents).map(Enum::name).collect(Collectors.joining(", "));
+        return Arrays.stream(talents)
+                       .map(Enum::name)
+                       .map(name -> name.substring(0, 1) + name.substring(1).toLowerCase())
+                       .collect(Collectors.joining(", "));
     }
 }

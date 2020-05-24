@@ -74,23 +74,29 @@
     <strong style="color: red;" th:text="${error}"></strong>
 </p>
 
-<p th:if="${error == null && results != null && results.getHero() != null}">
-    Wyniki dla: <strong>
-    <span th:text="${results.getHero().getName()}"></span> // <span th:text="${results.getHero().getDescription()}"></span> //
-    <span th:text="${results.getHero().getTopFive()}"></span>
-    </strong>
-</p>
+<!--<p th:if="${error == null && results != null && results.getHero() != null}">-->
+<!--    Wyniki dla: <strong>-->
+<!--    <span th:text="${results.getHero().getName()}"></span> // <span th:text="${results.getHero().getDescription()}"></span> //-->
+<!--    <span th:text="${results.getHero().getTopFive()}"></span>-->
+<!--    </strong>-->
+<!--</p>-->
 
 <table class="table-fixed max-w-full" th:if="${results != null}">
     <thead>
-    <tr>
-        <th class="w-1/6 px-4 py-2"> Imię i nazwisko </th>
-        <th class="w-1/6 px-4 py-2"> Branża </th>
-        <th class="w-3/6 px-4 py-2"> Top5 Talentów </th>
-        <th class="w-1/6 px-4 py-2"> Liczba wspólnych Talentów w Top5 </th>
+    <tr class="bg-blue-500 text-white">
+        <th class="border w-1/6 px-4 py-2"> Imię i nazwisko </th>
+        <th class="border w-1/6 px-4 py-2"> Branża </th>
+        <th class="border w-3/6 px-4 py-2"> Top5 Talentów </th>
+        <th class="border w-1/6 px-4 py-2"> Wspólne w Top5 </th>
     </tr>
     </thead>
     <tbody>
+    <tr class="bg-gray-600 text-blue-200 font-bold">
+        <td class="border px-4 py-2"><span th:text="${results.getHero().getName()}"></span></td>
+        <td class="border px-4 py-2"><span th:text="${results.getHero().getDescription()}"></span></td>
+        <td class="border px-4 py-2"><span th:text="${results.getHero().getTopFive()}"></span></td>
+        <td class="border px-4 py-2"><span>-</span></td>
+    </tr>
     <tr th:if="${results == null}">
         <td colspan="2"> Brak wyników </td>
     </tr>
