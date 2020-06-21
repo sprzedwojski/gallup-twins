@@ -47,7 +47,7 @@ public class ReadCSV {
 
     List<Person> read() {
         List<Person> people = new ArrayList<>();
-        try (Scanner scanner = new Scanner(new File("gallup.tsv"))) {
+        try (Scanner scanner = new Scanner(new File("gallup_fixed.tsv"))) {
             while (scanner.hasNextLine()) {
                 String nextLine = scanner.nextLine();
                 List<String> cells = getRecordFromLine(nextLine);
